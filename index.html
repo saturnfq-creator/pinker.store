@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PINKER - streetwear brand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="PINKER">
+      <span class="brand-mark"></span>
+      PINKER
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" aria-label="Основное меню">
+      <a href="#home">Главная</a>
+      <a href="#assortment">Ассортимент</a>
+      <a href="#about">О нас</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">New drop / urban wear</p>
+        <h1>PINKER</h1>
+        <p class="hero-text">Одежда для тех, кто выбирает силуэт, характер и спокойную уверенность вместо лишнего шума.</p>
+        <a class="hero-button" href="#assortment">Смотреть новинки</a>
+      </div>
+    </section>
+
+    <section class="about section-pad" id="about">
+      <div class="about-card">
+        <div>
+          <p class="section-kicker">О бренде</p>
+          <h2>Streetwear с чистой формой и темным настроением.</h2>
+        </div>
+        <p>
+          PINKER — бренд одежды, вдохновлённый современной визуальной культурой, графикой и символизмом.
+          Мы создаём вещи с выразительным характером, сочетая минимализм, контрастные формы и узнаваемые образы.
+          Наша одежда создана для тех, кто ценит детали, индивидуальность и городской стиль.
+        </p>
+        <div class="about-video" aria-label="PINKER visual">
+          <video src="videos/hypnostars.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </div>
+    </section>
+
+    <section class="products section-pad" id="assortment">
+      <div class="section-head">
+        <p class="section-kicker">Ассортимент</p>
+        <h2>Наши новинки</h2>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-image">
+            <img src="images/shirt1.png" alt="Футболка PINKER Shadow Back">
+          </div>
+          <div class="product-info">
+            <h3>Shadow Back Tee</h3>
+            <p>Белая футболка oversize с темным графичным принтом на спине.</p>
+            <span class="price">1 000 000 000 ₽</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img src="images/shirt2.png" alt="Футболка PINKER Eye Logo">
+          </div>
+          <div class="product-info">
+            <h3>Eye Logo Tee</h3>
+            <p>Плотный хлопок, свободная посадка и контрастная grunge-графика.</p>
+            <span class="price">1 ₽</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img src="images/shirt3.png" alt="Футболка PINKER Archive Print">
+          </div>
+          <div class="product-info">
+            <h3>Archive Print Tee</h3>
+            <p>Футболка с иллюстрацией в стиле zine-постеров и арт-скетчей.</p>
+            <span class="price">1 ₽</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact section-pad" id="contacts">
+      <div class="contact-panel">
+        <div class="contact-copy">
+          <p class="section-kicker">Контакты</p>
+          <h2>Свяжитесь с нами</h2>
+          <p>Оставьте сообщение, если хотите узнать о наличии, размерах или будущих дропах.</p>
+        </div>
+
+        <form class="contact-form" novalidate>
+          <label class="hp-field" aria-hidden="true">
+            Website
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+          <label>
+            Имя
+            <input type="text" name="name" placeholder="Ваше имя" required maxlength="80" autocomplete="name">
+          </label>
+          <label>
+            Телефон или email
+            <input type="text" name="contact" placeholder="+7 (999) 000-00-00" required maxlength="120" autocomplete="email">
+          </label>
+          <label class="wide">
+            Сообщение
+            <textarea name="message" rows="5" placeholder="Напишите ваш вопрос" required maxlength="2000"></textarea>
+          </label>
+          <button type="submit">Отправить</button>
+          <p class="form-note" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
