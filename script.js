@@ -4,6 +4,7 @@ const form = document.querySelector(".contact-form");
 const formNote = document.querySelector(".form-note");
 const submitButton = form.querySelector('button[type="submit"]');
 const contactInput = form.elements.contact;
+const messageInput = form.elements.message;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
@@ -19,6 +20,10 @@ nav.addEventListener("click", (event) => {
 
 contactInput.addEventListener("input", () => {
   contactInput.value = formatPhoneInput(contactInput.value);
+});
+
+messageInput.addEventListener("input", () => {
+  autoResizeTextarea(messageInput);
 });
 
 form.addEventListener("submit", (event) => {
@@ -56,6 +61,7 @@ form.addEventListener("submit", (event) => {
       }
 
       form.reset();
+      autoResizeTextarea(messageInput);
       formNote.textContent = "Заявка отправлена";
     })
     .catch((error) => {
@@ -124,3 +130,10 @@ function formatPhoneInput(value) {
 
   return result;
 }
+
+function autoResizeTextarea(textarea) {
+  textarea.style.height = "auto";
+  textarea.style.height = `${textarea.scrollHeight}px`;
+}
+
+autoResizeTextarea(messageInput);

@@ -44,7 +44,7 @@ a {
   justify-content: space-between;
   gap: 24px;
   width: min(1180px, calc(100% - 32px));
-  margin: 14px auto 0;
+  margin: 0 auto;
   padding: 10px 12px 10px 18px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 999px;
@@ -416,7 +416,9 @@ textarea {
 }
 
 textarea {
-  resize: vertical;
+  min-height: 138px;
+  overflow: hidden;
+  resize: none;
 }
 
 input::placeholder,
@@ -518,7 +520,7 @@ textarea::placeholder {
 @media (max-width: 560px) {
   .site-header {
     width: min(100% - 20px, 1180px);
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   .section-pad {
