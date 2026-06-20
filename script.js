@@ -1,4 +1,5 @@
 const menuToggle = document.querySelector(".menu-toggle");
+const siteHeader = document.querySelector(".site-header");
 const nav = document.querySelector(".nav");
 const form = document.querySelector(".contact-form");
 const formNote = document.querySelector(".form-note");
@@ -8,12 +9,14 @@ const messageInput = form.elements.message;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
+  siteHeader.classList.toggle("menu-open", isOpen);
   menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
 nav.addEventListener("click", (event) => {
   if (event.target.tagName === "A") {
     nav.classList.remove("is-open");
+    siteHeader.classList.remove("menu-open");
     menuToggle.setAttribute("aria-expanded", "false");
   }
 });
