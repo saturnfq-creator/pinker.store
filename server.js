@@ -44,6 +44,10 @@ app.get("/script.js", (req, res) => {
   res.sendFile(path.join(__dirname, "script.js"));
 });
 
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "favicon.ico"));
+});
+
 app.listen(PORT, () => {
   console.log(`PINKER site is running on http://localhost:${PORT}`);
 });

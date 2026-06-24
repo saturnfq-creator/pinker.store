@@ -4,36 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PINKER - streetwear brand</title>
-  <link rel="icon" type="image/png" href="images/pinkericon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/images/pinkericon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/pinkericon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <svg class="glass-filter-svg" aria-hidden="true" focusable="false">
-    <defs>
-      <filter id="about-glass-displace" color-interpolation-filters="sRGB">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.018 0.035"
-          numOctaves="2"
-          seed="8"
-          result="noise"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="noise"
-          scale="18"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          result="displaced"
-        />
-        <feGaussianBlur in="displaced" stdDeviation="0.35" />
-      </filter>
-    </defs>
-  </svg>
-
   <header class="site-header">
     <a class="brand" href="#home" aria-label="PINKER">
       <span class="brand-mark"></span>
@@ -62,7 +41,7 @@
 
     <section class="about section-pad" id="about">
       <div class="about-card">
-        <img class="about-star" src="images/star.png" alt="" aria-hidden="true">
+        <img class="about-star" src="images/star.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="about-video" aria-label="PINKER visual">
           <video src="videos/hypnostars.mp4" autoplay muted loop playsinline></video>
         </div>
@@ -87,7 +66,7 @@
       <div class="product-grid">
         <article class="product-card">
           <div class="product-image">
-            <img src="images/shirt1.png" alt="Футболка PINKER Shadow Back">
+            <img src="images/shirt1.png" alt="Футболка PINKER Shadow Back" loading="lazy" decoding="async">
           </div>
           <div class="product-info">
             <h3>Shadow Back Tee</h3>
@@ -98,7 +77,7 @@
 
         <article class="product-card">
           <div class="product-image">
-            <img src="images/shirt2.png" alt="Футболка PINKER Eye Logo">
+            <img src="images/shirt2.png" alt="Футболка PINKER Eye Logo" loading="lazy" decoding="async">
           </div>
           <div class="product-info">
             <h3>Eye Logo Tee</h3>
@@ -109,7 +88,7 @@
 
         <article class="product-card">
           <div class="product-image">
-            <img src="images/shirt3.png" alt="Футболка PINKER Archive Print">
+            <img src="images/shirt3.png" alt="Футболка PINKER Archive Print" loading="lazy" decoding="async">
           </div>
           <div class="product-info">
             <h3>Archive Print Tee</h3>
@@ -121,8 +100,8 @@
     </section>
 
     <section class="contact section-pad" id="contacts">
-      <img class="contact-star contact-star-left" src="images/star.png" alt="" aria-hidden="true">
-      <img class="contact-star contact-star-right" src="images/star.png" alt="" aria-hidden="true">
+      <img class="contact-star contact-star-left" src="images/star.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="contact-star contact-star-right" src="images/star.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="contact-panel">
         <div class="contact-copy">
           <p class="section-kicker">Контакты</p>

@@ -6,7 +6,25 @@ const formNote = document.querySelector(".form-note");
 const submitButton = form.querySelector('button[type="submit"]');
 const contactInput = form.elements.contact;
 const messageInput = form.elements.message;
+const autoplayVideos = document.querySelectorAll("video[autoplay]");
 let scrollAnimationFrame = null;
+const videoObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        const isVisible = entry.isIntersecting;
+
+        video.dataset.isVisible = String(isVisible);
+
+        if (isVisible) {
+          playVideo(video);
+          return;
+        }
+
+        video.pause();
+      });
+    }, { rootMargin: "240px 0px", threshold: 0.12 })
+  : null;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
@@ -46,6 +64,75 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     scrollToSection(target);
   });
 });
+
+["wheel", "touchstart", "keydown"].forEach((eventName) => {
+  window.addEventListener(eventName, cancelScrollAnimation, { passive: true });
+});
+
+autoplayVideos.forEach((video) => {
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = "auto";
+  video.dataset.lastTime = "0";
+  video.dataset.isVisible = videoObserver ? "false" : "true";
+
+  video.addEventListener("pause", () => {
+    if (!document.hidden && video.dataset.isVisible === "true") {
+      requestAnimationFrame(() => playVideo(video));
+    }
+  });
+
+  video.addEventListener("ended", () => {
+    video.currentTime = 0;
+    playVideo(video);
+  });
+
+  if (videoObserver) {
+    videoObserver.observe(video);
+  } else {
+    playVideo(video);
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    autoplayVideos.forEach((video) => {
+      if (video.dataset.isVisible === "true") {
+        playVideo(video);
+      }
+    });
+  }
+});
+
+window.addEventListener("pageshow", () => {
+  autoplayVideos.forEach((video) => {
+    if (video.dataset.isVisible === "true") {
+      playVideo(video);
+    }
+  });
+});
+
+window.setInterval(() => {
+  if (document.hidden) {
+    return;
+  }
+
+  autoplayVideos.forEach((video) => {
+    if (video.dataset.isVisible !== "true") {
+      return;
+    }
+
+    const lastTime = Number(video.dataset.lastTime || 0);
+    const isStuck = !video.paused && Math.abs(video.currentTime - lastTime) < 0.02;
+
+    if (video.paused || isStuck) {
+      playVideo(video);
+    }
+
+    video.dataset.lastTime = String(video.currentTime);
+  });
+}, 3500);
 
 contactInput.addEventListener("input", () => {
   contactInput.value = formatPhoneInput(contactInput.value);
@@ -176,9 +263,7 @@ function scrollToSection(target) {
 }
 
 function animateScrollTo(targetTop, duration) {
-  if (scrollAnimationFrame) {
-    cancelAnimationFrame(scrollAnimationFrame);
-  }
+  cancelScrollAnimation();
 
   const startTop = window.scrollY;
   const distance = targetTop - startTop;
@@ -204,4 +289,21 @@ function animateScrollTo(targetTop, duration) {
 
 function easeOutCubic(value) {
   return 1 - Math.pow(1 - value, 3);
+}
+
+function cancelScrollAnimation() {
+  if (!scrollAnimationFrame) {
+    return;
+  }
+
+  cancelAnimationFrame(scrollAnimationFrame);
+  scrollAnimationFrame = null;
+}
+
+function playVideo(video) {
+  const playPromise = video.play();
+
+  if (playPromise) {
+    playPromise.catch(() => {});
+  }
 }
