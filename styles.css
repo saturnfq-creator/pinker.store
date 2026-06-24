@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
+  overflow-x: hidden;
 }
 
 img {
@@ -43,8 +45,10 @@ a {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 20;
   display: flex;
   align-items: center;
@@ -811,12 +815,18 @@ textarea::placeholder {
   }
 
   .hero {
-    min-height: 560px;
+    min-height: 530px;
     padding-inline: 14px;
+    padding-top: 122px;
   }
 
   .hero h1 {
     font-size: clamp(58px, 19vw, 96px);
+  }
+
+  .hero-text {
+    max-width: 330px;
+    font-size: 15px;
   }
 
   .section-head {
@@ -828,11 +838,31 @@ textarea::placeholder {
   }
 
   .contact-panel {
-    padding: 28px;
+    gap: 24px;
+    padding: 24px;
   }
 
   .contact-copy h2 {
     font-size: clamp(38px, 12vw, 52px);
+  }
+
+  .contact-copy p:last-child {
+    font-size: 17px;
+    line-height: 1.15;
+  }
+
+  .contact-star {
+    width: 250px;
+  }
+
+  .contact-star-left {
+    top: -82px;
+    left: -118px;
+  }
+
+  .contact-star-right {
+    right: -118px;
+    bottom: -118px;
   }
 
   .contact-form button {
@@ -841,16 +871,23 @@ textarea::placeholder {
 
   .about-video {
     top: 66%;
-    right: -82px;
-    width: 270px;
+    right: -92px;
+    width: 245px;
+    opacity: 0.38;
     border-radius: 50%;
   }
 
   .about-glass {
     border-radius: 22px;
+    padding: 22px;
   }
 
   .about-glass h2 {
     font-size: clamp(32px, 10vw, 42px);
+  }
+
+  .about-glass p:last-child {
+    font-size: 14px;
+    line-height: 1.52;
   }
 }

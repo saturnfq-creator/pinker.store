@@ -172,7 +172,7 @@ function scrollToSection(target) {
   const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
   const maxTop = document.documentElement.scrollHeight - window.innerHeight;
 
-  animateScrollTo(Math.max(0, Math.min(top, maxTop)), 950);
+  animateScrollTo(Math.max(0, Math.min(top, maxTop)), 680);
 }
 
 function animateScrollTo(targetTop, duration) {
@@ -187,7 +187,7 @@ function animateScrollTo(targetTop, duration) {
   function step(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    const eased = easeInOutCubic(progress);
+    const eased = easeOutCubic(progress);
 
     window.scrollTo(0, startTop + distance * eased);
 
@@ -202,8 +202,6 @@ function animateScrollTo(targetTop, duration) {
   scrollAnimationFrame = requestAnimationFrame(step);
 }
 
-function easeInOutCubic(value) {
-  return value < 0.5
-    ? 4 * value * value * value
-    : 1 - Math.pow(-2 * value + 2, 3) / 2;
+function easeOutCubic(value) {
+  return 1 - Math.pow(1 - value, 3);
 }
