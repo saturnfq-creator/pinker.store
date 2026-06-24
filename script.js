@@ -6,6 +6,7 @@ const formNote = document.querySelector(".form-note");
 const submitButton = form.querySelector('button[type="submit"]');
 const contactInput = form.elements.contact;
 const messageInput = form.elements.message;
+let scrollAnimationFrame = null;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
@@ -15,10 +16,35 @@ menuToggle.addEventListener("click", () => {
 
 nav.addEventListener("click", (event) => {
   if (event.target.tagName === "A") {
+    const link = event.target;
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (target) {
+      event.preventDefault();
+      scrollToSection(target);
+    }
+
     nav.classList.remove("is-open");
     siteHeader.classList.remove("menu-open");
     menuToggle.setAttribute("aria-expanded", "false");
   }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  if (link.closest(".nav")) {
+    return;
+  }
+
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    scrollToSection(target);
+  });
 });
 
 contactInput.addEventListener("input", () => {
@@ -140,3 +166,44 @@ function autoResizeTextarea(textarea) {
 }
 
 autoResizeTextarea(messageInput);
+
+function scrollToSection(target) {
+  const headerOffset = siteHeader.offsetHeight + 18;
+  const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+  const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+
+  animateScrollTo(Math.max(0, Math.min(top, maxTop)), 950);
+}
+
+function animateScrollTo(targetTop, duration) {
+  if (scrollAnimationFrame) {
+    cancelAnimationFrame(scrollAnimationFrame);
+  }
+
+  const startTop = window.scrollY;
+  const distance = targetTop - startTop;
+  const startTime = performance.now();
+
+  function step(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = easeInOutCubic(progress);
+
+    window.scrollTo(0, startTop + distance * eased);
+
+    if (progress < 1) {
+      scrollAnimationFrame = requestAnimationFrame(step);
+      return;
+    }
+
+    scrollAnimationFrame = null;
+  }
+
+  scrollAnimationFrame = requestAnimationFrame(step);
+}
+
+function easeInOutCubic(value) {
+  return value < 0.5
+    ? 4 * value * value * value
+    : 1 - Math.pow(-2 * value + 2, 3) / 2;
+}

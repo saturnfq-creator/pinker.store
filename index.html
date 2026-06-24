@@ -10,6 +10,29 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <svg class="glass-filter-svg" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="about-glass-displace" color-interpolation-filters="sRGB">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.018 0.035"
+          numOctaves="2"
+          seed="8"
+          result="noise"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="18"
+          xChannelSelector="R"
+          yChannelSelector="G"
+          result="displaced"
+        />
+        <feGaussianBlur in="displaced" stdDeviation="0.35" />
+      </filter>
+    </defs>
+  </svg>
+
   <header class="site-header">
     <a class="brand" href="#home" aria-label="PINKER">
       <span class="brand-mark"></span>
@@ -22,7 +45,6 @@
     </button>
 
     <nav class="nav" aria-label="Основное меню">
-      <a href="#home">Главная</a>
       <a href="#assortment">Ассортимент</a>
       <a href="#about">О нас</a>
       <a href="#contacts">Контакты</a>
@@ -34,24 +56,23 @@
       <div class="hero-content">
         <p class="eyebrow">New drop / urban wear</p>
         <h1>PINKER</h1>
-        <p class="hero-text">Одежда для тех, кто выбирает силуэт, характер и спокойную уверенность вместо лишнего шума.</p>
-        <a class="hero-button" href="#assortment">Смотреть новинки</a>
       </div>
     </section>
 
     <section class="about section-pad" id="about">
       <div class="about-card">
-        <div>
-          <p class="section-kicker">О бренде</p>
-          <h2>Streetwear с чистой формой и темным настроением.</h2>
-        </div>
-        <p>
-          PINKER — бренд одежды, вдохновлённый современной визуальной культурой, графикой и символизмом.
-          Мы создаём вещи с выразительным характером, сочетая минимализм, контрастные формы и узнаваемые образы.
-          Наша одежда создана для тех, кто ценит детали, индивидуальность и городской стиль.
-        </p>
+        <img class="about-star" src="images/star.png" alt="" aria-hidden="true">
         <div class="about-video" aria-label="PINKER visual">
           <video src="videos/hypnostars.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="about-glass">
+          <p class="section-kicker">О бренде</p>
+          <h2>Streetwear с чистой формой и темным настроением.</h2>
+          <p>
+            PINKER - бренд одежды, вдохновленный уличной культурой, графикой и минималистичной модой.
+            Мы делаем вещи на каждый день: свободные футболки, выразительные принты и спокойную палитру,
+            которую легко сочетать с базовым гардеробом.
+          </p>
         </div>
       </div>
     </section>
@@ -99,6 +120,8 @@
     </section>
 
     <section class="contact section-pad" id="contacts">
+      <img class="contact-star contact-star-left" src="images/star.png" alt="" aria-hidden="true">
+      <img class="contact-star contact-star-right" src="images/star.png" alt="" aria-hidden="true">
       <div class="contact-panel">
         <div class="contact-copy">
           <p class="section-kicker">Контакты</p>
